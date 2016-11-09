@@ -5,13 +5,19 @@
   "description": "This extension 'scrubs' bad words and insults from pages.",
   "version": "0.1",
   "default_locale": "en",
-  "author": "Raveneus and PythonicNerd"
+  "author": "Raveneus and PythonicNerd",
 
   "browser_action": {
     "default_icon": "soap.png",
     "default_popup": "interface.html"
     "default_title": "Open the Soap menu"
   },
+  
+  "background": {
+    "scripts": ["event.js"],
+    "persistent": false
+  },
+  
   "permissions": [
     "activeTab",
     "https://ajax.googleapis.com/"
