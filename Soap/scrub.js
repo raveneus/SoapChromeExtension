@@ -5,10 +5,11 @@ function scrub(doc_elem) {
   
     for (var i = 0; i < bad_words.length; i++) {
         if (doc_elem.innerHTML.indexOf(bad_words[i]) !== -1) {
-	        console.log("bad word found");
-	        var string = Array(bad_words[i].length + 1).join('*');
-	        var re = new RegExp(bad_words[i], 'gi');
+            console.log("bad word found");
+            var string = Array(bad_words[i].length + 1).join('*');
+	    var re = new RegExp(bad_words[i], 'gi');
             doc_elem = doc_elem.replace(re, string);
+	    return doc_elem;
         }
     }
   
