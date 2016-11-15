@@ -1,0 +1,30 @@
+{
+  "manifest_version": 2,
+
+  "name": "Soap",
+  "description": "This extension 'scrubs' bad words and insults from pages.",
+  "version": "0.1",
+  "author": "Raveneus and PythonicNerd",
+
+  "browser_action": {
+    "default_icon": "soap.png",
+    "default_title": "Activate Soap"
+  },
+  
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["jquery-3.1.1.min.js", "scrub.js"],
+      "run_at": "document_end"
+    }
+  ],
+  
+  "background": {
+	"scripts": ["background.js"]  
+  },
+  
+  "permissions": [
+    "activeTab",
+    "https://ajax.googleapis.com/"
+  ]
+}
