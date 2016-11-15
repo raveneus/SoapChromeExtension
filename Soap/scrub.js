@@ -11,7 +11,7 @@ function htmlDescend() {
 	allDescendants(node);
 }
 
-var b = false;
+var ran = false;
 
 var bad_words = ["crap", "heck"]; //leave this blank until later
 var insults = ["screw you"]; // leave blank until later
@@ -52,5 +52,15 @@ function scrub(doc_elem) {
     }
 }
 
-setTimeout(htmlDescend, 1000);
+//setTimeout(htmlDescend, 1000);
 
+chrome.runtime.onMessage.addListener(function(request, sender, sendRequest) {
+	if (request.message == "activate_deactivate") {
+		if (request.state == "activate" && ran == false) {
+			setTimeout(htmlDescend, 1000);
+			ran = true;
+		} else {
+			location.reload();
+		}
+	}
+})
