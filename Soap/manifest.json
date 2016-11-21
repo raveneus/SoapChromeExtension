@@ -3,7 +3,7 @@
 
   "name": "Soap",
   "description": "This extension 'scrubs' bad words and insults from pages.",
-  "version": "0.1",
+  "version": "1.0",
   "author": "Raveneus and PythonicNerd",
 
   "browser_action": {
