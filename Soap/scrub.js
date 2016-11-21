@@ -21,13 +21,13 @@ function scrub(doc_elem) {
     for (var i = 0; i < bad_words.length; i++) {
 		if (doc_elem.innerHTML == undefined) {
 			doc_elem = JSON.stringify(doc_elem);
-			if (doc_elem.includes(bad_words[i])) {
+			if (doc_elem.toLowerCase().includes(bad_words[i])) {
 				console.log("bad word found");
 				var string = Array(bad_words[i].length + 1).join('*');
 	    		var re = new RegExp(bad_words[i], 'gi');
             	doc_elem = doc_elem.replace(re, string);
 			}
-		} else if (doc_elem.innerHTML.includes(bad_words[i])) {
+		} else if (doc_elem.innerHTML.toLowerCase().includes(bad_words[i])) {
             console.log("bad word found");
             var string = Array(bad_words[i].length + 1).join('*');
 	    	var re = new RegExp(bad_words[i], 'gi');
@@ -38,12 +38,12 @@ function scrub(doc_elem) {
     for (var i = 0; i < insults.length; i++) {
         if (doc_elem.innerHTML == undefined) {
 			doc_elem = JSON.stringify(doc_elem);
-			if ( doc_elem.includes(insults[i])) {
+			if ( doc_elem.toLowerCase().includes(insults[i])) {
 				var string = Array(insults[i].length + 1).join('*');
 	    		var re = new RegExp(insults[i], 'gi');
             	doc_elem = doc_elem.replace(re, string);
 			}
-		} else if (doc_elem.innerHTML.includes(insults[i])) {
+		} else if (doc_elem.innerHTML.toLowerCase().includes(insults[i])) {
             console.log("bad word found");
             var string = Array(insults[i].length + 1).join('*');
 	    	var re = new RegExp(insults[i], 'gi');
@@ -59,8 +59,10 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendRequest) {
 		if (request.state == "activate" && ran == false) {
 			setTimeout(htmlDescend, 1000);
 			ran = true;
-		} else {
+		} else if (request.state == "deactivate"){
 			location.reload();
 		}
+	} else if (request.message == "log") {
+		console.log(request.state);
 	}
-})
+});
